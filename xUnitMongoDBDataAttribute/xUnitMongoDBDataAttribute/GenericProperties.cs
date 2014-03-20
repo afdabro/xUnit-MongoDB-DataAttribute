@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace xUnitMongoDBDataAttribute
         /// </summary>
         Guid Id { get; set; }
     }
+
     /// <summary>
     /// Generic Properties Class to store object content
     /// </summary>

@@ -44,11 +44,10 @@ namespace xUnitMongoDBDataAttribute
         /// <typeparam name="T">Type of Entity</typeparam>
         /// <param name="collectionName">Name of collection</param>
         /// <returns></returns>
-        public IQueryable<T> GetAllEntities<T>(string collectionName)
+        public IEnumerable<T> GetAllEntities<T>(string collectionName)
         {
             var  collection = database.GetCollection<T>(collectionName);
-
-            return collection.FindAll().AsQueryable<T>();
+            return collection.FindAll().AsEnumerable<T>();
         }
 
         /// <summary>
