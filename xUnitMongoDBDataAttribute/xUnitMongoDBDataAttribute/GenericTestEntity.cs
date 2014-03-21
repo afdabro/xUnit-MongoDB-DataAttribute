@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Author: Andrew F. Dabrowski
+// Date: 3/20/2014
+// copyright© 2014
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +24,9 @@ namespace xUnitMongoDBDataAttribute
     }
 
     /// <summary>
-    /// Generic Properties Class to store object content
+    /// Generic Test Entity Class to store object content
     /// </summary>
-    public class GenericProperties : IUniqueId
+    public class GenericTestEntity : IUniqueId
     {
         /// <summary>
         /// Gets or sets the Id

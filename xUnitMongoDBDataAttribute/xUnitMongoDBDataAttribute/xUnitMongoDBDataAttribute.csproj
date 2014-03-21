@@ -62,7 +62,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="GenericProperties.cs" />
+    <Compile Include="GenericTestEntity.cs" />
     <Compile Include="MongoDBDataAttribute.cs" />
     <Compile Include="MongoDBRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,4 +1,9 @@
-﻿using System;
+﻿// Author: Andrew F. Dabrowski
+// Date: 3/20/2014
+// copyright© 2014
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +22,7 @@ namespace xUnitMongoDBDataAttribute
         /// MongoDB Repository
         /// </summary>
         private MongoDBRepository repository;
-
+        
         /// <summary>
         /// Collection name
         /// </summary>
@@ -41,7 +46,7 @@ namespace xUnitMongoDBDataAttribute
         /// <returns></returns>
         public override IEnumerable<object[]> GetData(System.Reflection.MethodInfo methodUnderTest, Type[] parameterTypes)
         {
-            throw new NotImplementedException();
+            return repository.GetAllEntities<GenericTestEntity>(_collection).Select(e => new object[] { e });
         }
     }
 }

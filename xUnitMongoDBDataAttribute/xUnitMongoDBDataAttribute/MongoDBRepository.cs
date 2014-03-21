@@ -1,4 +1,8 @@
-﻿using MongoDB.Driver;
+﻿// Author: Andrew F. Dabrowski
+// Date: 3/20/2014
+// copyright© 2014
+
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
