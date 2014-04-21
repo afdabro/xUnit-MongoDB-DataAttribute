@@ -63,9 +63,14 @@
   </Choose>
   <ItemGroup>
     <Compile Include="GenericTestEntity.cs" />
+    <Compile Include="IUniqueId.cs" />
+    <Compile Include="MongoConfiguration.cs" />
     <Compile Include="MongoDBDataAttribute.cs" />
     <Compile Include="MongoDBRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QARequest.cs" />
+    <Compile Include="QATest.cs" />
+    <Compile Include="RequestMethodType.cs" />
     <Compile Include="TestMongoDBRepos.cs" />
   </ItemGroup>
   <ItemGroup>

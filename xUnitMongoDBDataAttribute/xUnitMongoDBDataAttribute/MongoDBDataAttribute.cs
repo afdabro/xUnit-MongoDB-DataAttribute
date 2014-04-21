@@ -1,13 +1,12 @@
 ﻿// Author: Andrew F. Dabrowski
-// Date: 3/20/2014
-// copyright© 2014
+// Date: 4/20/2014
+// copyright Andrew F. Dabrowski © 2014
 
 
+using MongoDB.Bson.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit.Extensions;
 
 namespace xUnitMongoDBDataAttribute
@@ -36,6 +35,30 @@ namespace xUnitMongoDBDataAttribute
         {
             this._collection = collectionName;
             this.repository = new MongoDBRepository();
+            this.RegisterClass();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MongoDBDataAttribute"/> class.
+        /// </summary>
+        public MongoDBDataAttribute()
+        {
+            this.repository = new MongoDBRepository();
+            this.RegisterClass();
+        }
+
+        /// <summary>
+        /// Register QA Test
+        /// </summary>
+        public void RegisterClass()
+        {
+            BsonClassMap.RegisterClassMap<QATest>(cm =>
+            {
+                cm.AutoMap();
+                cm.GetMemberMap(c => c.Name).SetDefaultValue("Test");
+                //cm.MapCreator(p => new MyTestClass(p.FirstName, p.LastName));
+                cm.SetExtraElementsMember(cm.GetMemberMap(c => c.CatchAll));
+            });
         }
 
         /// <summary>
@@ -46,7 +69,29 @@ namespace xUnitMongoDBDataAttribute
         /// <returns></returns>
         public override IEnumerable<object[]> GetData(System.Reflection.MethodInfo methodUnderTest, Type[] parameterTypes)
         {
-            return repository.GetAllEntities<GenericTestEntity>(_collection).Select(e => new object[] { e });
+            if (this.CheckQueryOptions())
+                return repository.GetSpecificEntities<QATest>().Select(e => new object[] { e });
+
+            return repository.GetAllEntities<QATest>().Select(e => new object[] { e });
+        }
+
+        /// <summary>
+        /// Check if using query
+        /// </summary>
+        /// <returns></returns>
+        public bool CheckQueryOptions()
+        {
+            bool IsQuery = true;
+            if (String.IsNullOrWhiteSpace(this.repository.mongoConfiguration.QueryProperty))
+                IsQuery = false;
+
+            if (String.IsNullOrWhiteSpace(this.repository.mongoConfiguration.QueryValue))
+                IsQuery = false;
+
+            if (String.IsNullOrWhiteSpace(this.repository.mongoConfiguration.QueryValueType))
+                IsQuery = false;
+
+            return IsQuery;
         }
     }
 }

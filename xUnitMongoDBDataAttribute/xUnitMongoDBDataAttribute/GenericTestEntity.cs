@@ -13,17 +13,6 @@ namespace xUnitMongoDBDataAttribute
 {
 
     /// <summary>
-    /// Unique Id interface
-    /// </summary>
-    public interface IUniqueId
-    {
-        /// <summary>
-        /// Gets or sets the Id
-        /// </summary>
-        Guid Id { get; set; }
-    }
-
-    /// <summary>
     /// Generic Test Entity Class to store object content
     /// </summary>
     public class GenericTestEntity : IUniqueId
